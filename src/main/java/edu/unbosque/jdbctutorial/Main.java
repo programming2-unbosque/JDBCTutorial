@@ -3,92 +3,60 @@ package edu.unbosque.jdbctutorial;
 import java.util.*;
 import java.sql.*;
 
-import edu.unbosque.jdbctutorial.pojos.Customer;
-import edu.unbosque.jdbctutorial.pojos.Film;
+import edu.unbosque.jdbctutorial.dtos.Owner;
+import edu.unbosque.jdbctutorial.dtos.UserApp;
+import edu.unbosque.jdbctutorial.services.OwnersService;
+import edu.unbosque.jdbctutorial.services.PetsService;
+import edu.unbosque.jdbctutorial.services.UsersService;
 
 public class Main {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "org.postgresql.Driver";
-    static final String DB_URL = "jdbc:postgresql://35.192.11.12/dvdrental";
+    static final String DB_URL = "jdbc:postgresql://localhost/fourpaws";
 
     // Database credentials
     static final String USER = "postgres";
-    static final String PASS = "O6ifkko09h4Gq7jd";
+    static final String PASS = "";
 
     public static void main(String[] args) {
 
+        // Objects for handling connection
         Connection conn = null;
-        Statement stmt = null;
-
-        List<Customer> customers = new ArrayList<Customer>();
-        List<Film> films = new ArrayList<Film>();
 
         try {
 
-            // Register JDBC driver
+            // Registering the JDBC driver
             Class.forName(JDBC_DRIVER);
 
-            // Open a connection
+            // Opening database connection
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            // Execute a query
-            System.out.println("Creating statement...");
-            stmt = conn.createStatement();
-            String sql = "SELECT film_id, title, description, name AS language FROM film LEFT JOIN language ON film.language_id = language.language_id";
-            ResultSet rs = stmt.executeQuery(sql);
+            UsersService usersService = new UsersService(conn);
+            usersService.listUsers();
 
-            // Extract data from result set
-            while(rs.next()) {
+            PetsService petsService = new PetsService(conn);
+            petsService.countBySpecies("dog");
 
-                //Retrieve by column name
-                int filmId  = rs.getInt("film_id");
-                String title = rs.getString("title");
-                String description = rs.getString("description");
-                String language = rs.getString("language");
+            OwnersService ownersService = new OwnersService(conn);
+            ownersService.updateOwner(new Owner(6698, null, "Pepito Perez"));
 
-                //Display values
-                System.out.print("Film ID: " + filmId);
-                System.out.print(", title: " + title);
-                System.out.println(", description: " + description);
-                System.out.println(", Language: " + language);
-
-                films.add(new Film(filmId, title, description, language));
-
-            }
-
-            // Clean-up environment
-            rs.close();
-            stmt.close();
+            // Closing database connection
             conn.close();
 
         } catch(SQLException se) {
-            // Handle errors for JDBC
-            se.printStackTrace();
+            se.printStackTrace(); // Handling errors from database
         } catch(ClassNotFoundException e) {
-            // Handle errors for Class.forName
-            e.printStackTrace();
+            e.printStackTrace(); // Handling errors from JDBC driver
         } finally {
-
-            // Clean-up environment
-
+            // Cleaning-up environment
             try {
-                if(stmt!=null) stmt.close();
+                if(conn != null) conn.close();
             } catch(SQLException se) {
                 se.printStackTrace();
             }
-
-            try {
-                if(conn!=null) conn.close();
-            } catch(SQLException se) {
-                se.printStackTrace();
-            }
-
         }
 
-        System.out.println("Films retrieved: " + films.size());
-
     }
-
 }
