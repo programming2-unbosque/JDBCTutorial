@@ -3,8 +3,6 @@ package edu.unbosque.jdbctutorial.services;
 import edu.unbosque.jdbctutorial.dtos.Owner;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class OwnersService {
 

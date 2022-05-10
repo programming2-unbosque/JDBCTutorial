@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a91a3db-6e27-42cd-a4ef-5616039ca456" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/sql/create-tables.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/inserts.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql/selects.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/unbosque/jdbctutorial/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/unbosque/jdbctutorial/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/unbosque/jdbctutorial/dtos/UserApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/unbosque/jdbctutorial/dtos/UserApp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/unbosque/jdbctutorial/services/OwnersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/unbosque/jdbctutorial/services/OwnersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/unbosque/jdbctutorial/services/PetsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/unbosque/jdbctutorial/services/PetsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/unbosque/jdbctutorial/services/UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/unbosque/jdbctutorial/services/UsersService.java" afterDir="false" />
-    </list>
+    <list default="true" id="7a91a3db-6e27-42cd-a4ef-5616039ca456" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,7 +83,7 @@
       <workItem from="1619013528033" duration="5872000" />
       <workItem from="1633993944530" duration="10275000" />
       <workItem from="1634172994960" duration="3346000" />
-      <workItem from="1652188094997" duration="1317000" />
+      <workItem from="1652188094997" duration="1654000" />
     </task>
     <servers />
   </component>

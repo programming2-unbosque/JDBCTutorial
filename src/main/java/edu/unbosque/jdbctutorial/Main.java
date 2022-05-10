@@ -1,13 +1,6 @@
 package edu.unbosque.jdbctutorial;
 
-import java.util.*;
 import java.sql.*;
-
-import edu.unbosque.jdbctutorial.dtos.Owner;
-import edu.unbosque.jdbctutorial.dtos.UserApp;
-import edu.unbosque.jdbctutorial.services.OwnersService;
-import edu.unbosque.jdbctutorial.services.PetsService;
-import edu.unbosque.jdbctutorial.services.UsersService;
 
 public class Main {
 
@@ -39,8 +32,8 @@ public class Main {
             //PetsService petsService = new PetsService(conn);
             //petsService.countBySpecies("dog");
 
-            OwnersService ownersService = new OwnersService(conn);
-            ownersService.updateOwner(new Owner(6697, null, "Pepe"));
+            //OwnersService ownersService = new OwnersService(conn);
+            //ownersService.updateOwner(new Owner(6697, null, "Pepe"));
 
             // Closing database connection
             conn.close();
