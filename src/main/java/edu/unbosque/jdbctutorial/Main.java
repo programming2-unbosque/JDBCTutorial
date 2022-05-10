@@ -33,30 +33,28 @@ public class Main {
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            UsersService usersService = new UsersService(conn);
-            usersService.listUsers();
+            //UsersService usersService = new UsersService(conn);
+            //usersService.listUsers();
 
-            PetsService petsService = new PetsService(conn);
-            petsService.countBySpecies("dog");
+            //PetsService petsService = new PetsService(conn);
+            //petsService.countBySpecies("dog");
 
             OwnersService ownersService = new OwnersService(conn);
-            ownersService.updateOwner(new Owner(6698, null, "Pepito Perez"));
+            ownersService.updateOwner(new Owner(6697, null, "Pepe"));
 
             // Closing database connection
             conn.close();
-
-        } catch(SQLException se) {
+        } catch (SQLException se) {
             se.printStackTrace(); // Handling errors from database
-        } catch(ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace(); // Handling errors from JDBC driver
         } finally {
             // Cleaning-up environment
             try {
-                if(conn != null) conn.close();
-            } catch(SQLException se) {
+                if (conn != null) conn.close();
+            } catch (SQLException se) {
                 se.printStackTrace();
             }
         }
-
     }
 }

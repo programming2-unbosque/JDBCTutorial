@@ -1,12 +1,8 @@
 package edu.unbosque.jdbctutorial.services;
 
 import edu.unbosque.jdbctutorial.dtos.Owner;
-import edu.unbosque.jdbctutorial.dtos.UserApp;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,35 +16,32 @@ public class OwnersService {
     }
 
     public void updateOwner(Owner owner) {
-
-        // Objects for handling SQL statement
-        Statement stmt = null;
+        // Object for handling SQL statement
+        PreparedStatement stmt = null;
 
         try {
 
             // Executing a SQL query
             System.out.println("=> Updating owner...");
-            stmt = conn.createStatement();
-            String sql = "UPDATE Owner SET fullName = '" + owner.getFullName() + "' WHERE idNumber = " + owner.getIdNumer();
-            System.out.println(sql);
-            int rowsUpdated = stmt.executeUpdate(sql);
+            stmt = this.conn.prepareStatement("UPDATE Owner SET fullName = ? WHERE idNumber = ?");
+            stmt.setString(1, owner.getFullName());
+            stmt.setInt(2, owner.getIdNumer());
+            int rowsUpdated = stmt.executeUpdate(); // executeUpdate is also used for inserting records
 
             // Printing results
             System.out.println("Rows updated: " + rowsUpdated + "\n");
 
             // Closing resources
             stmt.close();
-
-        } catch(SQLException se) {
+        } catch (SQLException se) {
             se.printStackTrace(); // Handling errors from database
         } finally {
             // Cleaning-up environment
             try {
-                if(stmt != null) stmt.close();
-            } catch(SQLException se) {
+                if (stmt != null) stmt.close();
+            } catch (SQLException se) {
                 se.printStackTrace();
             }
         }
     }
-
 }

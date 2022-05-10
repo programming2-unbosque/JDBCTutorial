@@ -1,13 +1,6 @@
 package edu.unbosque.jdbctutorial.services;
 
-import edu.unbosque.jdbctutorial.dtos.UserApp;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
 
 public class PetsService {
 
@@ -19,38 +12,35 @@ public class PetsService {
     }
 
     public void countBySpecies(String species) {
-
-        // Objects for handling SQL statement
-        Statement stmt = null;
+        // Object for handling SQL statement
+        PreparedStatement stmt = null;
 
         try {
 
             // Executing a SQL query
             System.out.println("=> Counting pets by species...");
-            stmt = conn.createStatement();
-            String sql = "SELECT COUNT(*) AS count FROM Pet WHERE species = '" + species + "'";
-            ResultSet rs = stmt.executeQuery(sql);
+            stmt = this.conn.prepareStatement("SELECT COUNT(*) AS num_pets FROM Pet WHERE species = ?");
+            stmt.setString(1, species);
+            ResultSet rs = stmt.executeQuery();
 
             // Pointing to fist row
             rs.next();
 
             // Printing results
-            System.out.println("Total of pets by species: " + rs.getInt("count") + "\n");
+            System.out.println("Total of " + species + "s: " + rs.getInt("num_pets") + "\n");
 
             // Closing resources
             rs.close();
             stmt.close();
-
-        } catch(SQLException se) {
+        } catch (SQLException se) {
             se.printStackTrace(); // Handling errors from database
         } finally {
             // Cleaning-up environment
             try {
-                if(stmt != null) stmt.close();
-            } catch(SQLException se) {
+                if (stmt != null) stmt.close();
+            } catch (SQLException se) {
                 se.printStackTrace();
             }
         }
     }
-
 }
